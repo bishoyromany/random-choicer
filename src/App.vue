@@ -4,7 +4,9 @@
 </script>
 
 <template>
+<div class="w-screen min-h-screen m-auto flex container">
   <router-view></router-view>
+</div>
 </template>
 
 <style></style>
