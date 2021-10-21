@@ -7,14 +7,38 @@ if(items){
     items = {[uuid()]: ""};
 }
 
+let history = window.localStorage.getItem("history");
+if(history){
+    history = JSON.parse(history);
+}else{
+    history = {};
+}
+
 const state = () => ({
-    items
+    items,
+    history,
+    lastItem: {}
 });
 
 const mutations = {
     setItems(state, payload){
         state.items = payload;
         window.localStorage.setItem("items", JSON.stringify(payload));
+    },
+    updateHistroy(state, item){
+        let id = uuid();
+        let history = {
+            items: state.items,
+            item,
+            id
+        }
+
+        state.history[id] = history;
+        state.lastItem = history;
+
+        window.localStorage.setItem("history", JSON.stringify(state.history));
+
+        state.items = {[uuid()]: ""};
     }
 }
 
@@ -28,6 +52,16 @@ const actions = {
         let items = state.items;
         delete items[payload];
         commit("setItems", items);
+    },
+    choose({state, commit}){
+        const keys = Object.keys(state.items);
+        let item = keys[Math.floor(Math.random() * keys.length)];
+        if(!item){
+            alert("Failed To Select An Item");
+        }
+
+        commit("updateHistroy", {[item]: state.items[item]});
+
     }
 }
 

@@ -14,6 +14,11 @@ const routes = [
     component: AddUser,
     name: "user.add",
   },
+  {
+    path: "/:user/:item",
+    component: ChoiceSelector,
+    name: "choice.selector.result",
+  },
 ];
 
 const router = createRouter({

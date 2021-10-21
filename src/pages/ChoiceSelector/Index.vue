@@ -1,5 +1,6 @@
 <script setup>
 import { ref, reactive, computed, watch } from "vue";
+import { useRouter } from "vue-router";
 import AddUser from "./../Login/AddUser.vue";
 import { PlayIcon } from "@heroicons/vue/outline";
 import { CollectionIcon, XIcon } from "@heroicons/vue/solid";
@@ -9,6 +10,8 @@ import Alert from "./../../components/global/Alert.vue";
 
 const store = useStore();
 
+const router = useRouter();
+
 const user = ref(store.state.user.user.id);
 
 const items = computed(() => {
@@ -17,8 +20,20 @@ const items = computed(() => {
 
 const users = computed(() => store.state.user.users);
 
+const lastItemID = computed(() => store.state.randomItems.lastItem.id);
+
 watch(user, (user) => {
   store.commit("user/select", user);
+});
+
+watch(lastItemID, (item) => {
+  router.push({
+    name: "choice.selector.result",
+    params: {
+      user: user.value,
+      item,
+    },
+  });
 });
 
 const addAnotherInput = (data, id) => {
@@ -41,6 +56,10 @@ const cleanInput = (id) => {
     localItems[id] = "";
   }
   store.commit("randomItems/setItems", localItems);
+};
+
+const choose = () => {
+  store.dispatch("randomItems/choose");
 };
 </script>
 
@@ -148,6 +167,7 @@ const cleanInput = (id) => {
 
           <div>
             <button
+              @click="choose()"
               class="
                 mt-2
                 bg-green-400
