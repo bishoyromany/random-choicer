@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 const ChoiceSelector = () => import("./pages/ChoiceSelector/Index.vue");
 const Result = () => import("./pages/ChoiceSelector/Result.vue");
+const History = () => import("./pages/ChoiceSelector/History.vue");
 const AddUser = () => import("./pages/Login/AddUser.vue");
 
 const routes = [
@@ -14,6 +15,11 @@ const routes = [
     path: "/:id",
     component: ChoiceSelector,
     name: "choice.selector.retry",
+  },
+  {
+    path: "/history",
+    component: History,
+    name: "choice.selector.history",
   },
   {
     path: "/user/add",

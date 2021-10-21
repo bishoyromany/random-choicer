@@ -1,9 +1,10 @@
 <script setup>
-import { UsersIcon, CollectionIcon } from "@heroicons/vue/solid";
+import { UsersIcon, CollectionIcon, ClockIcon } from "@heroicons/vue/solid";
 
 const icons = [
   { icon: CollectionIcon, route: { name: "choice.selector" } },
   { icon: UsersIcon, route: { name: "user.add" } },
+  { icon: ClockIcon, route: { name: "choice.selector.history" } },
 ];
 </script>
 

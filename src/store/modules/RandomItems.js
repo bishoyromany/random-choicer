@@ -24,7 +24,7 @@ const mutations = {
     setItems(state, payload){
         state.items = payload;
         window.localStorage.setItem("items", JSON.stringify(payload));
-    }
+    },
 }
 
 const actions = {
@@ -55,12 +55,13 @@ const actions = {
         dispatch("updateHistroy", {[item]: state.items[item]});
 
     },
-    updateHistroy({state, commit}, item){
+    updateHistroy({state, commit, rootState}, item){
         let id = uuid();
         let history = {
             items: state.items,
             item,
-            id
+            id,
+            user: rootState.user.user
         }
 
         state.history[id] = history;
@@ -69,6 +70,16 @@ const actions = {
         window.localStorage.setItem("history", JSON.stringify(state.history));
 
         commit('setItems', {[uuid()]: ""});
+    },
+    setHistoryItems({state, commit}, id){
+        let history = state.history[id];
+        if(history){
+            history = history.items;
+            commit("setItems", history);
+            return true;
+        }
+
+        alert("History Record For ID: "+ id+ " Not Found");
     }
 }
 

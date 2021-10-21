@@ -1,6 +1,6 @@
 <script setup>
-import { ref, reactive, computed, watch } from "vue";
-import { useRouter } from "vue-router";
+import { ref, computed, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
 import AddUser from "./../Login/AddUser.vue";
 import { PlayIcon } from "@heroicons/vue/outline";
 import { CollectionIcon, XIcon } from "@heroicons/vue/solid";
@@ -11,6 +11,14 @@ import Alert from "./../../components/global/Alert.vue";
 const store = useStore();
 
 const router = useRouter();
+
+const route = useRoute();
+
+const operationID = route.params.id;
+
+if (operationID) {
+  store.dispatch("randomItems/setHistoryItems", operationID);
+}
 
 const user = ref(store.state.user.user.id);
 
@@ -110,7 +118,6 @@ const choose = () => {
               pr-2
               w-full
               max-w-lg
-              md:max-w-md
               border-gray-400 border-2
               hover:border-gray-500
               rounded-md
@@ -142,7 +149,6 @@ const choose = () => {
                   pr-2
                   w-full
                   max-w-lg
-                  md:max-w-md
                   border-gray-400 border-2
                   hover:border-gray-500
                   rounded-md
