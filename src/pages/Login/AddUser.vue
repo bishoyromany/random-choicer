@@ -16,6 +16,7 @@ const addUser = () => {
     return false;
   }
   store.dispatch("user/add", { name: state.name });
+  state.name = null;
 };
 </script>
 

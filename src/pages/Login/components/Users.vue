@@ -2,6 +2,7 @@
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { XIcon } from "@heroicons/vue/solid";
+import Alert from "./../../../components/global/Alert.vue";
 
 const store = useStore();
 
@@ -24,12 +25,14 @@ const removeUser = (id) => {
                 class="cursor-pointer flex-1 bg-gray-200 p-3 items-center rounded-md flex justify-between"
             >
                 <span>{{ user.name }}</span> 
-                <XIcon @click="removeUser(user.id)" class="w-3 h-3 text-red-600 cursor-pointer" />
+                <XIcon @click="removeUser(user.id)" class="w-4 h-4 text-red-600 cursor-pointer font-bold" />
             </div>
         </template>
 
         <template v-else>
-            <div class="w-full bg-red-400 py-2 px-3 rounded-md ">You have no users</div>
+            <Alert class="bg-red-400">
+                You have no users
+            </Alert>
         </template>
 
     </div>
