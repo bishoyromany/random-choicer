@@ -32,7 +32,7 @@ const mutations = {
             alert("User Not Found");
         }
 
-    }
+    },
 }
 
 const actions = {
@@ -49,7 +49,14 @@ const actions = {
     }
 }
 
+const getters = {
+    user: (state) => payload => {
+        let user = state.users.filter(user => user.id == payload)[0];
+        return user ? user : null;   
+    }
+}
+
 export default {
     namespaced: true,
-    state, mutations, actions
+    state, mutations, actions, getters
 }
