@@ -12,7 +12,7 @@ const state = reactive({ name });
 const store = useStore();
 
 const addUser = () => {
-  if (state.name.length < 1) {
+  if (state.name && state.name.length < 1) {
     return false;
   }
   store.dispatch("user/add", { name: state.name });
@@ -40,7 +40,9 @@ const addUser = () => {
         <div class="flex justify-center mb-1">
           <UserCircleIcon class="w-1/4 text-gray-600 dark:text-gray-100" />
         </div>
-        <label for="name" class="text-gray-800 inline-block cursor-pointer dark:text-white"
+        <label
+          for="name"
+          class="text-gray-800 inline-block cursor-pointer dark:text-white"
           >Your Name</label
         >
         <input
