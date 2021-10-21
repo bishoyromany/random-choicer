@@ -12,17 +12,23 @@ const state = () => ({
 });
 
 const mutations = {
-    addUser(state, payload){
-        state.users.push(payload);
+    setUsers(state, payload){
+        state.users = payload;
+        window.localStorage.setItem("users", JSON.stringify(payload));
     }
 }
 
 const actions = {
-    addUser({commit, state}, payload){
+    add({commit, state}, payload){
         payload.id = uuid();
-        commit("addUser", payload);
+        let users = state.users;
+        users.push(payload);
+        commit("setUsers", users);
 
-        window.localStorage.setItem("users", JSON.stringify(state.users));
+    },
+    remove({commit, state}, payload){
+        let users = state.users.filter(user => user.id !== payload);
+        commit("setUsers", users);
     }
 }
 
