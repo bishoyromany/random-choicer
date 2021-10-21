@@ -1,4 +1,5 @@
 import { createApp } from "vue";
+import { registerSW } from 'virtual:pwa-register'
 
 import App from "./App.vue";
 import router from "./router";
@@ -13,3 +14,8 @@ app.use(router);
 app.use(store);
 
 app.mount("#app");
+
+const updateSW = registerSW({
+    onNeedRefresh() {},
+    onOfflineReady() {},
+})
