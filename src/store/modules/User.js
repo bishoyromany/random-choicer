@@ -7,14 +7,31 @@ if(users){
     users = [];
 }
 
+let user = window.localStorage.getItem("user");
+if(user){
+    user = JSON.parse(user);
+}else{
+    user = [];
+}
+
 const state = () => ({
-    users
+    users, user
 });
 
 const mutations = {
     setUsers(state, payload){
         state.users = payload;
         window.localStorage.setItem("users", JSON.stringify(payload));
+    },
+    select(state, payload){
+        let user = state.users.filter(user => user.id === payload)[0];
+        if(user){
+            window.localStorage.setItem("user", JSON.stringify(user));
+            state.user = user;
+        }else{
+            alert("User Not Found");
+        }
+
     }
 }
 

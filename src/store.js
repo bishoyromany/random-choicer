@@ -4,10 +4,12 @@ import mutations from "./store/mutations";
 import actions from "./store/actions";
 
 import user from "./store/modules/User";
+import randomItems from "./store/modules/RandomItems";
 
 export default createStore({
     modules: {
-        user
+        user,
+        randomItems
     },
     state, mutations, actions
 });
