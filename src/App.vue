@@ -9,7 +9,9 @@ import Sidebar from "./components/Layout/Sidebar.vue";
     class="w-screen min-h-screen m-auto flex dark:bg-gray-800 dark:text-white"
   >
     <Sidebar />
-    <router-view></router-view>
+    <div class="p-4 flex-1 flex items-center justify-middle">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 

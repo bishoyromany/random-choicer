@@ -9,18 +9,20 @@ const icons = [
 
 <template>
   <div>
-    <div class="w-16"></div>
+    <div class="w-10 md:w-16"></div>
     <div
       class="
         fixed
         top-0
         left-0
         h-screen
-        w-16
+        w-10
+        md:w-16
         m-0
         flex flex-col
         bg-gray-200
         dark:bg-gray-900
+        sm:w-10
       "
     >
       <router-link
