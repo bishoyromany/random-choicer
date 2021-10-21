@@ -34,12 +34,13 @@ const addUser = () => {
           p-5
           rounded-md
           shadow-md
+          dark:bg-gray-700
         "
       >
         <div class="flex justify-center mb-1">
-          <UserCircleIcon class="w-1/4 text-gray-600" />
+          <UserCircleIcon class="w-1/4 text-gray-600 dark:text-gray-100" />
         </div>
-        <label for="name" class="text-gray-800 inline-block cursor-pointer"
+        <label for="name" class="text-gray-800 inline-block cursor-pointer dark:text-white"
           >Your Name</label
         >
         <input
@@ -57,6 +58,7 @@ const addUser = () => {
             border-gray-400 border-2
             hover:border-gray-500
             rounded-md
+            dark:text-black
           "
         />
         <div>
