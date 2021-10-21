@@ -23,6 +23,8 @@ const addUser = () => {
 <template>
   <div class="flex-1 flex items-center">
     <div class="flex-1 flex items-center gap-4 flex-col justify-center p-4">
+      <h1>Manage Users</h1>
+
       <div
         class="
           flex flex-col flex-auto
